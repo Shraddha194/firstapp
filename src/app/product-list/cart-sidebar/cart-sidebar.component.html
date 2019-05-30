@@ -1,0 +1,7 @@
+<ul *ngIf="pro_arr.length>0;else elseblock">
+  <li *ngFor="let item of pro_arr">{{item.pro_name| uppercase}}  <button (click)="onDelSort(item)">Delete Sort Pro</button>
+  </li>
+</ul>
+
+<ng-template #elseblock>
+  <div><h3>NO Sort Product Name</h3></div></ng-template>

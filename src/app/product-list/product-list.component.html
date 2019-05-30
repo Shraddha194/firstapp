@@ -1,0 +1,45 @@
+<div class="container">
+<div class="row">
+  <div class="col-md-3">
+    <app-cart-sidebar></app-cart-sidebar>
+  </div>
+  <div class="col-md-9">
+<div class="card" style="width: 18rem;" *ngFor="let item of arr_product">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body" >
+    <h5 class="card-title">{{item.pro_id}}</h5>
+    <p class="card-text">{{item.pro_name | titlecase}}</p>
+    <p class="card-text">{{item.pro_price |currency:'INR'}}</p>
+    <p class="card-text">{{item.pro_soh}}</p>
+    <button (click)="onDelPro(item)" class="btn btn-danger">Delete</button> |
+    <button (click)="onSortAddPro(item)" class="btn btn-primary">Add Sort Product</button>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- <div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product Id</th>
+          <th>Product Name</th>
+          <th>Product Price</th>
+          <th>Product soh</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of arr_product">
+          <td>{{item.pro_id}}</td>
+          <td>{{item.pro_name}}</td>
+          <td>{{item.pro_price}}</td>
+          <td>{{item.pro_soh}}</td>
+          <td><button (click)="onDelPro(item)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->

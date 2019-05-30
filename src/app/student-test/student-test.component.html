@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <app-sidebar [title]="str" (onMyFunc)="onSidebar($event)"></app-sidebar>
+    </div>
+    <div class="col-md-9">
+
+      <button (click)="onShowForm()">Add New Stud</button>
+
+      <div id="container">
+        <div [hidden]=flag>
+          <div id="row">
+            <input type="number" #s_id class="form-control" placeholder="Student ID">
+            <input type="text" #s_name class="form-control" placeholder="Student Name">
+            <select #s_city class="form-control">
+              <option>Select</option>
+              <option>Ahemdabad</option>
+              <option>Surat</option>
+              <option>Baroda</option>
+              <option>Gandhinagar</option>
+            </select>
+            <input type="radio" class="form-contol" #attendance name="s_attendance" value="present">present
+            <input type="radio" class="form-contol" #attendance1 name="s_attendance" value="absent">absent<br />
+            <button class="btn btn-primary"
+              (click)="onAddStud(s_id.value,s_name.value,s_city.value,attendance.checked?attendance.value:attendance1.value)">Add
+              Student</button>
+          </div>
+        </div>
+      </div>
+      <input type="text" class="form-control" #searchnm placeholder="search" (keyup)=0>
+      <table class="table">
+
+        <thead>
+          <tr>
+            <th>Student Id</th>
+            <th>Student Name</th>
+            <th>Student City</th>
+            <th>Student Attendane</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of arrStudent | studfilter:searchnm.value">
+            <td>{{item.s_id}}</td>
+            <td>{{item.s_name}}</td>
+            <td>{{item.s_city}}</td>
+            <td><span
+                [ngClass]="{studpresent: item.s_attendance=='present',studabsent: item.s_attendance=='absent'}">{{item.s_attendance}}</span>
+            </td>
+            <td>
+              <button (click)="onDelStud(item)">Delete</button> |
+              <button (click)="onUpdateStud(item)">Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

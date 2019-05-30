@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <input type="number" #demo>
+    <button (click)="onClick()">Add</button>
+  </div>
+  <div class="row">
+    <input type="number" #emp_id class="form-control" placeholder="Enter Employee Id">
+    <input type="text" #emp_name class="form-control" placeholder="Enter Employee Name">
+    <input type="number" #emp_salary class="form-control" placeholder="Enter Employee Salary">
+    <select #emp_desi class="form-control">
+      <option>Select</option>
+      <option>Student</option>
+      <option>Employee</option>
+      <option>Admin</option>
+    </select>
+    <button class="btn btn-primary" (click)="onAddEmp(emp_id.value,emp_name.value,emp_salary.value,emp_desi.value)">Add
+      Employee</button>
+  </div>
+  <input type="text" #search (keyup)=0 class="form-control" placeholder="Search">
+</div>
+<table class="table">
+  <thead>
+    <th>Employee Id</th>
+    <th>Employee Name</th>
+    <th>Employee Salary</th>
+    <th>Employee Designation</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of arrEmp | filter:search.value">
+      <td>{{item.emp_id}}</td>
+      <td>{{item.emp_name}}</td>
+      <td>{{item.emp_salary}}</td>
+      <td><span
+          [ngClass]="{studentdesi: item.emp_desi=='Student',employeedesi: item.emp_desi=='Employee',admindesi: item.emp_desi=='Admin'}">{{item.emp_desi}}</span>
+      </td>
+      <td><button (click)="onDelEmp(item)">Delete</button> |
+        <button (click)="onUpdateEmp(item)">Update</button></td>
+    </tr>
+  </tbody>
+</table>
